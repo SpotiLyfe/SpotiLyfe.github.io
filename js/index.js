@@ -70,11 +70,15 @@ var country_songs = [link1, link2, link3]
 var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
+let header = new Headers({
+    'Access-Control-Allow-Origin':'*',
+    "Authorization": "Basic " + SPOTIFY_CLIENT_ID,
+});
+
 var myInit = {
   method: "POST",
   mode: 'cors',
-  headers: {"Authorization": "Basic " + SPOTIFY_CLIENT_ID,
-            "Access-Control-Allow-Origin": "*"},
+  headers: header,
   body: {"grant-type": "client-credentials"}
 };
 
