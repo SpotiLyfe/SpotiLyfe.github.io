@@ -27,6 +27,11 @@ $(function() {
 			$body.removeClass('is-loading');
 		});
 
+		$('.vid').on('click', function() {
+			var value = $(this).val();
+			alert('<source src="video/' + value + ' type="video/mp4">')
+		});
+
 	// Poptrox.
 		$window.on('load', function() {
 
