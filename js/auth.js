@@ -20,7 +20,7 @@ function success(pos) {
     console.log(url);
 
     $.getJSON(url, function(weather) {
-        console.log(data);
+        console.log(weather);
     });
 };
 
