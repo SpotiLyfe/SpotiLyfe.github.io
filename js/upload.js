@@ -50,7 +50,22 @@ input.onchange = function(e) {
             },
             error: (e) => console.error(e)
         });  
-    };  
+    };
+    
+    
+    var threshold = 128;
+    var url = img.src;
+    getLightness(url, function(b, g) {
+        console.log(b + "-" + g);
+
+        if(g > threshold){
+            var url = spotify("country");
+            addVideoElement(url);
+        } else {
+            var url = spotify("urban");
+            addVideoElement(url);
+        }
+    });
 };
 
 $('.button-collapse').sideNav({
