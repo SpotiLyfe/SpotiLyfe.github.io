@@ -87,7 +87,8 @@ function getSong(response) {
 
 function spotify(genre){
   fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
-    .then(getSong)
+    .then(console.log(GET_URL + "%22" + genre + "%22&type=track&limit=10"))
+    // .then(getSong)
     .catch(function(errorMessage) { alert("error: " + errorMessage); });
     console.log("Country");
 }
