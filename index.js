@@ -109,11 +109,11 @@ var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
 
-    if(g > threshold){
-        spotifyA();
-    } else {
-        spotifyB();
-    }
+    // if(g > threshold){
+    //     spotifyA();
+    // } else {
+    //     spotifyB();
+    // }
 });
 
 // Sentiment analysis
@@ -137,7 +137,7 @@ var urban_songs = [link4, link5, link6]
 
 
 var GET_URL = "https://api.spotify.com/v1/"
-
+var TOKEN = :
 // random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
