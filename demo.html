@@ -6,6 +6,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+        <script src="js/demo.js"></script>
 	</head>
 	<body>
 
@@ -21,11 +22,11 @@
 					<section id="main">
 						<center>
 						<div class="dropdown_div">
-							<select>
-  							<option value="art.MOV" class="vid">Art</option>
-  							<option value="garden.MOV" class="vid">Garden</option>
-  							<option value="geyser.MOV" class="vid">Geyser</option>
-  							<option value="hallway.MOV" class="vid">Hallway</option>
+							<select id="myselect" onchange="selectFunc(this.value)">
+                                <option value="art.MOV" class="vid">Art</option>
+                                <option value="garden.MOV" class="vid">Garden</option>
+                                <option value="geyser.MOV" class="vid">Geyser</option>
+                                <option value="hallway.MOV" class="vid">Hallway</option>
 							</select>
 						</div>
 
@@ -55,7 +56,6 @@
 			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/myjs.js"></script>
 
 	</body>
 </html>
