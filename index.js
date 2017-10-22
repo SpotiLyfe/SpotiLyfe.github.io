@@ -1,7 +1,5 @@
 // Get image
 
-function getid(id) { return document.getElementById(id); }
-
 // Get the brighness and greenness
 function getLightness(imageSrc, callback) {
     var img = document.createElement("img");
@@ -47,11 +45,11 @@ var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
 
-    // if(g > threshold){
-    //     spotifyA();
-    // } else {
-    //     spotifyB();
-    // }
+    if(g > threshold){
+        spotify("country");
+    } else {
+        spotify("urban");
+    }
 });
 
 // Sentiment analysis
@@ -87,16 +85,9 @@ function getSong(response) {
   console.log(responseData["tracks"]["items"]["external_urls"][randomNum()])
 }
 
-getid("test").onclick(spotifyA())
-
-function spotifyA(){
-  fetch(GET_URL + "%22country%22&type=track&limit=10")
+function spotify(genre){
+  fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
     .then(getSong)
     .catch(function(errorMessage) { alert("error: " + errorMessage); });
     console.log("Country");
-}
-
-function spotifyB(){
-    // Play urban
-    console.log("Urban");
 }
