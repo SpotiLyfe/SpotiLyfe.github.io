@@ -102,3 +102,21 @@ request.post(authOptions, function(error, response, body) {
     });
   }
 });
+
+function randomNum() {
+  return Math.floor(Math.random() * 10)
+}
+
+// Generate random song from classification:
+function getSong(response) {
+  var responseData = JSON.parse(response)
+  console.log(responseData["tracks"]["items"]["external_urls"][randomNum()])
+}
+
+function spotify(genre){
+  fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
+    .then(console.log(GET_URL + "%22" + genre + "%22&type=track&limit=10"))
+    // .then(getSong)
+    .catch(function(errorMessage) { alert("error: " + errorMessage); });
+    console.log("Country");
+}
