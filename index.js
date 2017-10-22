@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 
 
 /* global AjaxGetPromise, AjaxPostPromise */
+=======
+$(document).ready(() => {
+    $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true, // Choose whether you can drag to open on touch screens
+      }
+    );
+});
+>>>>>>> 555726d22f66baa1a2c6ca8821e63f133ddf1e35
 
 // Get image
 
@@ -46,6 +57,7 @@ function getLightness(imageSrc, callback) {
 
 // Genre classification
 
+var threshold = 128; 
 var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
@@ -57,8 +69,6 @@ getLightness(url, function(b, g) {
     }
 });
 
-
-=======
 // Sentiment analysis
 
 // Genre classification
