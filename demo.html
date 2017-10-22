@@ -21,19 +21,21 @@
 				<!-- Main -->
 					<section id="main">
 						<center>
-						<div class="dropdown_div">
-							<select id="myselect" onchange="selectFunc(this.value)">
-                                <option value="art.MOV" class="vid">Art</option>
-                                <option value="garden.MOV" class="vid">Garden</option>
-                                <option value="geyser.MOV" class="vid">Geyser</option>
-                                <option value="hallway.MOV" class="vid">Hallway</option>
-							</select>
-						</div>
+                            <div class="dropdown_div">
+                                <select id="myselect" onchange="selectFunc(this.value)">
+                                    <option value="" selected disabled hidden>Choose Demo</option>
 
-						</center>
-
-						<center>
-							<video id="video" width="640" height="1136" controls></video>
+                                    <option style="color:black;" value="art.MOV" class="vid">Art</option>
+                                    <option style="color:black;"value="garden.MOV" class="vid">Garden</option>
+                                    <option style="color:black;"value="geyser.MOV" class="vid">Geyser</option>
+                                    <option style="color:black;"value="hallway.MOV" class="vid">Hallway</option>
+                                </select>
+                            </div>
+                            
+                            <br/><br/>
+                            
+                            <div id="tags"></div>
+                            <video id="video" width="500" height="600"></video>
 						</center>
 
 
