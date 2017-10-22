@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0 0 20px;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -31,7 +31,7 @@ body {
 main {
     flex: 1 0 auto;
 }
- 
+
 #player {
     width: 80%;
     height: 350px;
@@ -39,8 +39,4 @@ main {
 
 .input-field {
     width: 80%;
-    max-width: 600px;
-}
-.brand-logo {
-    font-family: "Open Sans";
 }

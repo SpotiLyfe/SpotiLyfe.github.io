@@ -1,6 +1,5 @@
 var img = document.getElementById('pic');   
 var input = document.getElementById("upload");
-
 function makeBlob(dataURL) {
     var BASE64_MARKER = ';base64,';
     if (dataURL.indexOf(BASE64_MARKER) == -1) {
@@ -23,6 +22,7 @@ function makeBlob(dataURL) {
     return new Blob([uInt8Array], { type: contentType });
 }
 
+let imageMetaData;
 input.onchange = function(e) {
     img.src = URL.createObjectURL(this.files[0]);
 
@@ -33,7 +33,7 @@ input.onchange = function(e) {
         binaryString = fr.result;
 
         $.ajax({
-            url: `${AZURE_URL}/describe`,
+            url: `${AZURE_URL}/analyze?${$.param({ visualFeatures: 'Categories,Description,Color' })}`,
             contentType: false,
             processData: false,
             beforeSend: function(xhrObj) {
@@ -43,7 +43,7 @@ input.onchange = function(e) {
             type: 'POST',
             data: makeBlob(binaryString),
             success: (result) => {
-                console.log('Image Result: ', result);
+                imageMetaData = result;
             },
             error: (e) => console.error(e)
         });  

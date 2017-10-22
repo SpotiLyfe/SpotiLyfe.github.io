@@ -41,7 +41,7 @@ function getLightness(imageSrc, callback) {
 // Genre classification
 
 var threshold = 128;
-var url = "./img/test.jpg";
+var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
 
@@ -66,11 +66,17 @@ var link4 = "https://open.spotify.com/track/2y0zglZs6AlNBg4XEm2leW"
 var link5 = "https://open.spotify.com/track/5ItzU5pBrFmRUudfr5RkJP"
 var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
-var songs = [link1, link2, link3, link4, link5, link6]
+var country_songs = [link1, link2, link3]
+var urban_songs = [link4, link5, link6]
+
+// Spotify song + play song
 
 
+var GET_URL = "https://api.spotify.com/v1/"
+var TOKEN = "abc"
+// random num used for random song from json returned from get
 function randomNum() {
-  return Math.floor(Math.random() * 3)
+  return Math.floor(Math.random() * 10)
 }
 
 // Generate random song from classification:
@@ -80,11 +86,9 @@ function getSong(response) {
 }
 
 function spotify(genre){
-  if(genre == "country") {
-    return songs[randomNum()]
-    console.log(songs[randomNum()])
-  } else {
-    return songs[randomNum() + 3]
-    console.log(songs[randomNum() + 3])
-  }
+  fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
+    .then(console.log(GET_URL + "%22" + genre + "%22&type=track&limit=10"))
+    // .then(getSong)
+    .catch(function(errorMessage) { alert("error: " + errorMessage); });
+    console.log("Country");
 }
