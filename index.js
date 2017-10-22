@@ -73,8 +73,10 @@ var urban_songs = [link4, link5, link6]
 
 
 var GET_URL = "https://api.spotify.com/v1/"
-var oauth = fetch("https://accounts.spotify.com/authorize/?client_id=" + SPOTIFY_CLIENT_ID + "&response_type=code")
-console.log(oauth)
+fetch("https://accounts.spotify.com/authorize/?client_id=" + SPOTIFY_CLIENT_ID + "&response_type=code")
+  .then(console.log(oauth))
+  .catch(function(errorMessage) { alert("error: " + errorMessage); });
+
 // random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
