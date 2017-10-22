@@ -74,7 +74,7 @@ var oauth = "BQADjP6FZY3rpenUjwF7i7zjANng-hoDGtIeAzH_xJZZUlDO-Tajap_z0XlAbkz0kD5
 
 function addVideoElement(url) {
   document.getElementById("widget").innerHTML =
-  '<iframe src="https://open.spotify.com/embed?uri=spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+  '<iframe src="https://open.spotify.com/embed?uri=spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ" width="500" height="680" frameborder="0" allowtransparency="true"></iframe>';
 }
 
 function randomNum() {
