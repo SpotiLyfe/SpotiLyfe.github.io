@@ -1,5 +1,60 @@
-// Get image + create tags
+// Get image
 
+
+
+// Get the brighness and greenness
+function getLightness(imageSrc, callback) {
+    var img = document.createElement("img");
+    img.src = imageSrc;
+    img.style.display = "none";
+    document.body.appendChild(img);
+
+    var colorSum = 0;
+
+    img.onload = function() {
+        var canvas = document.createElement("canvas");
+        canvas.width = this.width;
+        canvas.height = this.height;
+
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(this, 0, 0);
+
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        var r, g, b, avg;
+
+        var green = 0;
+        for(var x = 0, len = data.length; x < len; x+=4) {
+            r = data[x];
+            g = data[x + 1];
+            b = data[x + 2];
+
+            avg = Math.floor((r+g+b)/3);
+            green += g;
+            colorSum += avg;
+        }
+
+        var brightness = Math.floor(colorSum / (this.width*this.height));
+        var greenVal = Math.floor(green  / (this.width*this.height));
+        callback(brightness, greenVal);
+    }
+}
+
+// Genre classification
+
+var url = "./test.jpg";
+getLightness(url, function(b, g) {
+    console.log(b + "-" + g);
+    
+    if(g > threshold){
+        spotifyA();
+    } else {
+        spotifyB();
+    }
+});
+
+
+=======
 // Sentiment analysis
 
 // Genre classification
@@ -18,3 +73,12 @@ var country_songs = [link1, link2, link3]
 var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
+function spotifyA(){
+    // Play country
+    alert("Country");
+}
+
+function spotifyB(){
+    // Play urban
+    alert("Urban");
+}
