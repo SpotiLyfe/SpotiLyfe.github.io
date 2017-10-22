@@ -46,9 +46,11 @@ getLightness(url, function(b, g) {
     console.log(b + "-" + g);
 
     if(g > threshold){
-        spotify("country");
+        var url = spotify("country");
+        addVideoElement(url);
     } else {
-        spotify("urban");
+        var url = spotify("urban");
+        addVideoElement(url);
     }
 });
 
@@ -74,7 +76,7 @@ var oauth = "BQADjP6FZY3rpenUjwF7i7zjANng-hoDGtIeAzH_xJZZUlDO-Tajap_z0XlAbkz0kD5
 
 function addVideoElement(url) {
   document.getElementById("widget").innerHTML =
-  '<iframe src="https://open.spotify.com/embed?uri=spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ" width="500" height="680" frameborder="0" allowtransparency="true"></iframe>';
+  '<iframe src="' + url + '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
 }
 
 function randomNum() {
@@ -89,8 +91,8 @@ function getSong(response) {
 
 function spotify(genre){
   if(genre == "country") {
-    addVideoElement(songs[randomNum()])
+    return(songs[randomNum()]);
   } else {
-    addVideoElement(songs[randomNum() + 3]);
+    return(songs[randomNum() + 3]);
   }
 }
