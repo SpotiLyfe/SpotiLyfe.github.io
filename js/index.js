@@ -70,27 +70,27 @@ var country_songs = [link1, link2, link3]
 var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
-let header = new Headers({
-    'Access-Control-Allow-Origin':'*',
-    "Authorization": "Basic " + SPOTIFY_CLIENT_ID,
-});
-
-var myInit = {
-  method: "POST",
-  mode: 'cors',
-  headers: header,
-  body: {"grant-type": "client-credentials"}
-};
-
-var CORS_URL = "https://cors.io/?"
-var GET_URL = "https://api.spotify.com/v1/"
-fetch("https://accounts.spotify.com/api/token", myInit)
-  .then(function(response) {console.log(response);} )
-  .catch(function(errorMessage) { alert("error: " + errorMessage); });
+// let header = new Headers({
+//     'Access-Control-Allow-Origin':'*',
+//     "Authorization": "Basic " + SPOTIFY_CLIENT_ID,
+// });
+//
+// var myInit = {
+//   method: "POST",
+//   mode: 'cors',
+//   headers: header,
+//   body: {"grant-type": "client-credentials"}
+// };
+//
+// var CORS_URL = "https://cors.io/?"
+// var GET_URL = "https://api.spotify.com/v1/"
+// fetch("https://accounts.spotify.com/api/token", myInit)
+//   .then(function(response) {console.log(response);} )
+//   .catch(function(errorMessage) { alert("error: " + errorMessage); });
 
 // random num used for random song from json returned from get
 function randomNum() {
-  return Math.floor(Math.random() * 10)
+  return Math.floor(Math.random() * 3)
 }
 
 // Generate random song from classification:
@@ -100,8 +100,13 @@ function getSong(response) {
 }
 
 function spotify(genre){
-  fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
-    .then(getSong)
-    .catch(function(errorMessage) { alert("error: " + errorMessage); });
-    console.log("Country");
+  if(genre == "country") {
+    return songs[randomNum()]
+  } else {
+    return songs[randomNum() + 3]
+  }
+  // fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
+  //   .then(getSong)
+  //   .catch(function(errorMessage) { alert("error: " + errorMessage); });
+  //   console.log("Country");
 }
