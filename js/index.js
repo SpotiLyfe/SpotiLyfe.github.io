@@ -70,10 +70,16 @@ var country_songs = [link1, link2, link3]
 var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
+var myHeaders = new Headers();
+var myInit = {
+  method: "POST",
+  headers: {"Authorization": "Basic " + SPOTIFY_CLIENT_ID},
+  body: {"grant-type": "client-credentials"}
+};
 
 var CORS_URL = "https://cors.io/?"
 var GET_URL = "https://api.spotify.com/v1/"
-fetch(CORS_URL + "https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&response_type=code")
+fetch("https://accounts.spotify.com/api/token", myInit)
   .then(function(response) {console.log(response);} )
   .catch(function(errorMessage) { alert("error: " + errorMessage); });
 
