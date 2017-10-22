@@ -68,130 +68,37 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
 var songs = [link1, link2, link3, link4, link5, link6]
 
-function getUsername(callback) {
-  console.log('getUsername');
-	var url = 'https://api.spotify.com/v1/me';
-	$.ajax(url, {
-		dataType: 'json',
-		headers: {
-			'Authorization': 'Bearer ' + g_access_token
-		},
-		success: function(r) {
-			console.log('got username response', r);
-			callback(r.id);
-		},
-		error: function(r) {
-			callback(null);
-		}
-	});
-}
+var request = require('request'); // "Request" library
 
-function createPlaylist(username, name, callback) {
-	console.log('createPlaylist', username, name);
-	var url = 'https://api.spotify.com/v1/users/' + username +
-		'/playlists';
-	$.ajax(url, {
-		method: 'POST',
-		data: JSON.stringify({
-			'name': name,
-			'public': false
-		}),
-		dataType: 'json',
-		headers: {
-			'Authorization': 'Bearer ' + g_access_token,
-			'Content-Type': 'application/json'
-		},
-		success: function(r) {
-			console.log('create playlist response', r);
-			callback(r.id);
-		},
-		error: function(r) {
-			callback(null);
-		}
-	});
-}
+var client_id = 'CLIENT_ID'; // Your client id
+var client_secret = 'CLIENT_SECRET'; // Your secret
 
-var CORS_URL = "https://cors.io/?";
-var GET_URL = "https://api.spotify.com/v1/";
-fetch(CORS_URL + "https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&response_type=code")
-  .then(function(response) {console.log(response);} )
-  .catch(function(errorMessage) { alert("error: " + errorMessage); });
+// your application requests authorization
+var authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
+};
 
-function addTracksToPlaylist(username, playlist, tracks, callback) {
-	console.log('addTracksToPlaylist', username, playlist, tracks);
-	var url = 'https://api.spotify.com/v1/users/' + username +
-		'/playlists/' + playlist +
-		'/tracks'; // ?uris='+encodeURIComponent(tracks.join(','));
-	$.ajax(url, {
-		method: 'POST',
-		data: JSON.stringify(tracks),
-		dataType: 'text',
-		headers: {
-			'Authorization': 'Bearer ' + g_access_token,
-			'Content-Type': 'application/json'
-		},
-		success: function(r) {
-			console.log('add track response', r);
-			callback(r.id);
-		},
-		error: function(r) {
-			callback(null);
-		}
-	});
-}
-function doit() {
-	// parse hash
-	var hash = location.hash.replace(/#/g, '');
-	var all = hash.split('&');
-	var args = {};
-	console.log('all', all);
-	all.forEach(function(keyvalue) {
-		var idx = keyvalue.indexOf('=');
-		var key = keyvalue.substring(0, idx);
-		var val = keyvalue.substring(idx + 1);
-		args[key] = val;
-	});
-	g_name = localStorage.getItem('createplaylist-name');
-	g_tracks = JSON.parse(localStorage.getItem('createplaylist-tracks'));
-	console.log('got args', args);
-	if (typeof(args['access_token']) != 'undefined') {
-		// got access token
-		console.log('got access token', args['access_token']);
-		g_access_token = args['access_token'];
-	}
-	getUsername(function(username) {
-		console.log('got username', username);
-		createPlaylist(username, g_name, function(playlist) {
-			console.log('created playlist', playlist);
-			addTracksToPlaylist(username, playlist, g_tracks, function() {
-				console.log('tracks added.');
-				$('#playlistlink').attr('href', 'spotify:user:'+username+':playlist:'+playlist);
-				$('#creating').hide();
-				$('#done').show();
-			});
-		});
-	});
-}
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
 
-// random num used for random song from json returned from get
-function randomNum() {
-  return Math.floor(Math.random() * 3)
-}
-
-// Generate random song from classification:
-function getSong(response) {
-  var responseData = JSON.parse(response)
-  console.log(responseData["tracks"]["items"]["external_urls"][randomNum()])
-}
-
-function spotify(genre){
-  if(genre == "country") {
-    return songs[randomNum()]
-  } else {
-    return songs[randomNum() + 3]
+    // use the access token to access the Spotify Web API
+    var token = body.access_token;
+    var options = {
+      url: 'https://api.spotify.com/v1/users/jmperezperez',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      json: true
+    };
+    request.get(options, function(error, response, body) {
+      console.log(body);
+    });
   }
-  // fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
-  //   .then(getSong)
-  //   .catch(function(errorMessage) { alert("error: " + errorMessage); });
-  //   console.log("Country");
-}
+});
