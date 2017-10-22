@@ -52,6 +52,7 @@ AjaxPostPromise = function(url, data) {
     });
 };
 
+function getid(id) { return document.getElementById(id); }
 $(document).ready(() => {
     $('.button-collapse').sideNav({
         menuWidth: 300, // Default is 300
@@ -149,7 +150,7 @@ function getSong(response) {
   return responseData["tracks"]["items"]["external_urls"][randomNum()]
 }
 
-$("test").onclick(spotifyA())
+getid("test").onclick(spotifyA())
 
 function spotifyA(){
   var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
