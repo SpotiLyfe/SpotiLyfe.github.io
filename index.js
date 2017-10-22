@@ -157,10 +157,10 @@ function spotifyA(){
       ajaxPromise
           .then(getSong)
           .catch(function(errorMessage) { alert("error: " + errorMessage); });
-    alert("Country");
+    console.log("Country");
 }
 
 function spotifyB(){
     // Play urban
-    alert("Urban");
+    console.log("Urban");
 }
