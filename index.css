@@ -1,15 +1,17 @@
-<style>
-  body {
+body {
     margin: 0 0 20px;
-  }
-  .footer {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.footer {
     position: absolute;
     bottom: 0;
     height: 20px;
     background: #f0f0f0;
     width: 100%;
-  }
-  .button {
+}
+.button {
     background-color: #841584; /* Green */
     border: none;
     color: white;
@@ -26,4 +28,7 @@
     background-color: #841584; /* Green */
     color: white;
 }
-</style>
+main {
+    flex: 1 0 auto;
+}
+ 
