@@ -20,7 +20,7 @@ function success(pos) {
     alertify.warning(`Longitude: ${crd.longitude}`);
     alertify.warning(`More or less ${crd.accuracy} meters.`);
     
-    var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + crd.latitude + "&lon=" + crd.longitude + "&appid=" + WEATHER_API_KEY;
+    var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + crd.latitude + "&lon=" + crd.longitude + "&appid=" + WEATHER_API_KEY;
           
     $.getJSON(url, function(weather) {
         //console.log(weather);
