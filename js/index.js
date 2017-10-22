@@ -68,7 +68,7 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB";
 
 var songs = [link1, link2, link3, link4, link5, link6];
 
-
+console.log(imageMetaData)
 var oauth = "BQADjP6FZY3rpenUjwF7i7zjANng-hoDGtIeAzH_xJZZUlDO-Tajap_z0XlAbkz0kD5FJZwiPirTP01Y_6HFipRIPYmKQnQ1DQYzlJ923BMqIEDFLxQoxLiXiPN6JVi3D9-drDo568pdfYNDPgTpgA8zl4mQf89ATrUlngD07ukVVfhZHC9r8FiGXrK1GYZ2YOxefvLkkEC1";
 
 function addVideoElement(url) {
