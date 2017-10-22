@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/SpotiLyfe/SpotiLyfe.github.io#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "http-server": "^0.10.0",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "request": "^2.83.0",
+    "spotify-web-api-node": "^2.5.0"
   }
 }
