@@ -9,24 +9,24 @@ var jsonData = {
 };
 
 
-
-// Request Auth
-$.ajax(
-  {
-    method: "GET",
-    url: "https://accounts.spotify.com/authorize",
-    data: {
-      "response_type": 'code',
-      "redirect_uri":  "https://spotilyfe.github.io/callback.html",
-      "client_id":     SPOTIFY_CLIENT_ID,
-    },
-    success: function(result) {
-        console.log("Auth: " +result);
-        getAccessToken();
-    },
-  }
-);
-
+function spotifyAuth() {
+    // Request Auth
+    $.ajax(
+      {
+        method: "GET",
+        url: "https://accounts.spotify.com/authorize",
+        data: {
+          "response_type": 'code',
+          "redirect_uri":  "https://spotilyfe.github.io/callback.html",
+          "client_id":     SPOTIFY_CLIENT_ID,
+        },
+        success: function(result) {
+            console.log("Auth: " +result);
+            getAccessToken(result);
+        },
+      }
+    );
+}
 
 // Get Access Token
 function getAccessToken() {
@@ -49,7 +49,7 @@ function getAccessToken() {
     );
 }
 
-function makePlaylist() {
+function makePlaylist(accessToken) {
     // Make playlist
     $.ajax({
       type: 'POST',
@@ -68,3 +68,6 @@ function makePlaylist() {
       }
     });
 }
+
+var oauth = "BQADjP6FZY3rpenUjwF7i7zjANng-hoDGtIeAzH_xJZZUlDO-Tajap_z0XlAbkz0kD5FJZwiPirTP01Y_6HFipRIPYmKQnQ1DQYzlJ923BMqIEDFLxQoxLiXiPN6JVi3D9-drDo568pdfYNDPgTpgA8zl4mQf89ATrUlngD07ukVVfhZHC9r8FiGXrK1GYZ2YOxefvLkkEC1";
+makePlaylist(oauth);
