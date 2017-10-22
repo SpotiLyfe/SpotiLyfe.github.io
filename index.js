@@ -138,7 +138,7 @@ var urban_songs = [link4, link5, link6]
 
 
 var GET_URL = "https://api.spotify.com/v1/"
-var TOKEN = :
+var TOKEN = "abc"
 // random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
@@ -147,7 +147,7 @@ function randomNum() {
 // Generate random song from classification:
 function getSong(response) {
   var responseData = JSON.parse(response)
-  console.log(responseData["tracks"]["items"]["external_urls"][randomNum()]) 
+  console.log(responseData["tracks"]["items"]["external_urls"][randomNum()])
 }
 
 getid("test").onclick(spotifyA())
