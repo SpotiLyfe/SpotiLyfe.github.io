@@ -72,6 +72,7 @@ var urban_songs = [link4, link5, link6]
 // Spotify song + play song
 var myInit = {
   method: "POST",
+  mode: 'cors',
   headers: {"Authorization": "Basic " + SPOTIFY_CLIENT_ID,
             "Access-Control-Allow-Origin": "*"},
   body: {"grant-type": "client-credentials"}
