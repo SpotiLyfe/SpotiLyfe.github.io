@@ -153,7 +153,7 @@ function getSong(response) {
 getid("test").onclick(spotifyA())
 
 function spotifyA(){
-  fetch(GET_URL + "%22country%22&type=track&limit=10");
+  fetch(GET_URL + "%22country%22&type=track&limit=10")
     .then(getSong)
     .catch(function(errorMessage) { alert("error: " + errorMessage); });
     console.log("Country");
