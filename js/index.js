@@ -62,13 +62,13 @@ function addVideoElement(url) {
 }
 
 function randomNum() {
-  return Math.floor(Math.random() * 3);
+  return Math.floor(Math.random() * 6);
 }
 
 function spotify(genre){
   if(genre == "country") {
     return(songs[randomNum()]);
   } else {
-    return(songs[randomNum() + 3]);
+    return(songs[randomNum() + 6]);
   }
 }
