@@ -5,6 +5,8 @@ const AZURE_KEY_1 = '50be2cc1ee1a4a7ba86025bebf108e9f';
 const AZURE_KEY_2 = '08a1d011ff1946d98f83c088052ef50d';
 const WEATHER_API_KEY = '66843ecf4919fe2bea8f3b4029511f81';
 
+
+
 var options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -20,10 +22,8 @@ function success(pos) {
     
     var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + crd.latitude + "&lon=" + crd.longitude + "&appid=" + WEATHER_API_KEY;
           
-    console.log(url);
-
     $.getJSON(url, function(weather) {
-        console.log(weather);
+        //console.log(weather);
     });
 };
 
