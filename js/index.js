@@ -57,8 +57,8 @@ var link12 = "https://open.spotify.com/embed?uri=spotify%3Atrack%3A2QAYzr2tstl81
 var songs = [link1, link2, link3, link4, link5, link6, link7, link8, link9, link10, link11, link12];
 
 function addVideoElement(url) {
-  document.getElementById("widget").innerHTML =
-  '<iframe src="' + url + '" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>';
+    var tmp = document.getElementById("pic");
+    document.getElementById("widget").innerHTML = '<iframe src="' + url + '" width="' + tmp.clientWidth + '" height="80" frameborder="0" allowtransparency="true"></iframe><br/>';
 }
 
 function randomNum() {
