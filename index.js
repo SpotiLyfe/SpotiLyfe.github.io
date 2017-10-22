@@ -1,5 +1,3 @@
-/* global AjaxGetPromise, AjaxPostPromise */
-
 /* AJAX shiz */
 AjaxGetPromise = function(url) {
     return new Promise(function(resolve, reject) {
