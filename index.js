@@ -1,5 +1,56 @@
-/* global AjaxGetPromise, AjaxPostPromise */
+/* AJAX shiz */
+AjaxGetPromise = function(url) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (this.status == 200) {       // 200 means request succeeded
+                resolve(this.responseText);
+            } else {                        // Other status codes usually mean something went wrong.
+                reject("Status: " + this.status + ", " + this.statusText);
+            }
+        };
 
+        // network error -- handle similar to non-200 response
+        xhr.onerror = function (exception) {
+            reject(exception);
+        };
+
+        // Open up the request, passing async = true...
+        xhr.open("GET", url, true);
+
+        // ....aaaand send it out the door.
+        xhr.send();
+    });
+};
+
+AjaxPostPromise = function(url, data) {
+    return new Promise(function(resolve, reject) {
+        var formData = new FormData();
+        for (var key in data) {
+            formData.append(key, data[key]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (this.status == 200) {       // 200 means request succeeded
+                resolve(this.responseText);
+            } else {                        // Other status codes usually mean something went wrong.
+                reject("Status: " + this.status + ", " + this.statusText);
+            }
+        };
+
+        // network error -- handle similar to non-200 response
+        xhr.onerror = function (exception) {
+            reject(exception);
+        };
+
+        // Open up the request, passing async = true...
+        xhr.open("POST", url, true);
+
+        // ....aaaand send it out the door.
+        xhr.send(formData);
+    });
+};
 
 $(document).ready(() => {
     $('.button-collapse').sideNav({
@@ -11,7 +62,6 @@ $(document).ready(() => {
 });
 
 // Get image
-
 
 
 // Get the brighness and greenness
@@ -85,22 +135,26 @@ var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
 
-// Generate random song from classification:
+
 var GET_URL = "https://api.spotify.com/v1/"
 
+// random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
 }
 
-function analyzeSong(response) {
+// Generate random song from classification:
+function getSong(response) {
   var responseData = JSON.parse(response)
-  return responseData["tracks"]["items"]["external_urls"]
+  return responseData["tracks"]["items"]["external_urls"][randomNum()]
 }
+
+$("test").onclick(spotifyA())
 
 function spotifyA(){
   var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
       ajaxPromise
-          .then(analyzeSong)
+          .then(getSong)
           .catch(function(errorMessage) { alert("error: " + errorMessage); });
     alert("Country");
 }
