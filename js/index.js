@@ -66,8 +66,7 @@ var link4 = "https://open.spotify.com/track/2y0zglZs6AlNBg4XEm2leW"
 var link5 = "https://open.spotify.com/track/5ItzU5pBrFmRUudfr5RkJP"
 var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
-var country_songs = [link1, link2, link3]
-var urban_songs = [link4, link5, link6]
+var songs = [link1, link2, link3, link4, link5, link6]
 
 // Spotify song + play song
 // let header = new Headers({
