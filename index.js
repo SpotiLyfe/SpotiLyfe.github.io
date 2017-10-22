@@ -85,14 +85,16 @@ var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
 
-// Generate random song from classification:
+
 var GET_URL = "https://api.spotify.com/v1/"
 
+// random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
 }
 
-function analyzeSong(response) {
+// Generate random song from classification:
+function getSong(response) {
   var responseData = JSON.parse(response)
   return responseData["tracks"]["items"]["external_urls"][randomNum()]
 }
@@ -102,7 +104,7 @@ $("test").onclick(spotifyA())
 function spotifyA(){
   var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
       ajaxPromise
-          .then(analyzeSong)
+          .then(getSong)
           .catch(function(errorMessage) { alert("error: " + errorMessage); });
     alert("Country");
 }
