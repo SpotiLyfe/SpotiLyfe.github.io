@@ -73,7 +73,7 @@ var urban_songs = [link4, link5, link6]
 
 
 var GET_URL = "https://api.spotify.com/v1/"
-fetch("https://accounts.spotify.com/authorize/?client_id=" + SPOTIFY_CLIENT_ID + "&response_type=code")
+fetch("https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&response_type=code")
   .then(console.log(oauth))
   .catch(function(errorMessage) { alert("error: " + errorMessage); });
 
