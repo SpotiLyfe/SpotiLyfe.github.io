@@ -66,26 +66,56 @@ var link4 = "https://open.spotify.com/track/2y0zglZs6AlNBg4XEm2leW"
 var link5 = "https://open.spotify.com/track/5ItzU5pBrFmRUudfr5RkJP"
 var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
-var country_songs = [link1, link2, link3]
-var urban_songs = [link4, link5, link6]
+var songs = [link1, link2, link3, link4, link5, link6]
 
-// Spotify song + play song
-var myHeaders = new Headers();
-var myInit = {
-  method: "POST",
-  headers: {"Authorization": "Basic " + SPOTIFY_CLIENT_ID},
-  body: {"grant-type": "client-credentials"}
+var authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
 };
 
-var CORS_URL = "https://cors.io/?"
-var GET_URL = "https://api.spotify.com/v1/"
-fetch("https://accounts.spotify.com/api/token", myInit)
-  .then(function(response) {console.log(response);} )
-  .catch(function(errorMessage) { alert("error: " + errorMessage); });
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+
+    // use the access token to access the Spotify Web API
+    var token = body.access_token;
+    var options = {
+      url: 'https://api.spotify.com/v1/users/nsundaresan',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      json: true
+    };
+    request.get(options, function(error, response, body) {
+      console.log(body);
+    });
+  }
+});
+
+var spotifyApi = new SpotifyWebApi({
+  clientId : SPOTIFY_CLIENT_ID,
+  clientSecret : SPOTIFY_CLIENT_SECRET,
+  redirectUri : 'http://spotilyfe.github.io'
+});
+
+spotifyApi.setAccessToken(oauthToken)
+module.exports = function (n) { return n * 111 }
+
+spotifyApi.searchTracks('Country')
+  .then(function(data) {
+    console.log('Search by "Country"', data.body);
+  }, function(err) {
+    console.error(err);
+  });
 
 // random num used for random song from json returned from get
 function randomNum() {
-  return Math.floor(Math.random() * 10)
+  return Math.floor(Math.random() * 3)
 }
 
 // Generate random song from classification:
@@ -95,8 +125,13 @@ function getSong(response) {
 }
 
 function spotify(genre){
-  fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
-    .then(getSong)
-    .catch(function(errorMessage) { alert("error: " + errorMessage); });
-    console.log("Country");
+  if(genre == "country") {
+    return songs[randomNum()]
+  } else {
+    return songs[randomNum() + 3]
+  }
+  // fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
+  //   .then(getSong)
+  //   .catch(function(errorMessage) { alert("error: " + errorMessage); });
+  //   console.log("Country");
 }
