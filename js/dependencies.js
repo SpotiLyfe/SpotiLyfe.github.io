@@ -70,7 +70,7 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 var songs = [link1, link2, link3, link4, link5, link6]
 
 
-var oauthToken = "BQDD_ASLMgiZuCrA8b9dOJX_SqUvKkXO_1_63vDt2CMM0m3kaaTgL80n7TBMhKMthvkilsIIPhQurlh2SggmFhqmEWufhFjcPoincOxKAyAkx8QaR7ZmK-kvAkttSwycEYD__CTk83D0PQ"
+var oauthToken = "BQA_sqZX9oLoLpKpquG4ELLFcAHIODQv40EB0wEqEWlSqNz30S91x72TJXJ_F3l_tHuXebkfQS7QyqGZXvObBWgUGXG53zdd0ZIYwxrlExc_G1YBhdT72wHFna_RCy99hs2triXuTnMfhg-kvAkttSwycEYD__CTk83D0PQ"
 
 var SpotifyWebApi = require('spotify-web-api-node');
 
@@ -81,6 +81,7 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 spotifyApi.setAccessToken(oauthToken)
+module.exports = function (n) { return n * 111 }
 
 spotifyApi.searchTracks('Country')
   .then(function(data) {
