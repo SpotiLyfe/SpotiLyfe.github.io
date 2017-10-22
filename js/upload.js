@@ -1,4 +1,4 @@
-var img = document.getElementById('pic');   
+var img = document.getElementById('pic');
 var input = document.getElementById("upload");
 function makeBlob(dataURL) {
     var BASE64_MARKER = ';base64,';
@@ -25,6 +25,8 @@ function makeBlob(dataURL) {
 let imageMetaData;
 input.onchange = function(e) {
     img.src = URL.createObjectURL(this.files[0]);
+    img.style.maxWidth = '400px';
+    img.style.maxHeight = '400px';
 
     let binaryString;
     const fr = new FileReader();
@@ -44,6 +46,7 @@ input.onchange = function(e) {
             data: makeBlob(binaryString),
             success: (result) => {
                 imageMetaData = result;
+                console.log('ImageMetaData:', imageMetaData);
             },
             error: (e) => console.error(e)
         });  
