@@ -68,43 +68,9 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
 var songs = [link1, link2, link3, link4, link5, link6]
 
-var request = require('request'); // "Request" library
-
-var client_id = 'CLIENT_ID'; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
-
-// your application requests authorization
-var authOptions = {
-  url: 'https://accounts.spotify.com/api/token',
-  headers: {
-    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-  },
-  form: {
-    grant_type: 'client_credentials'
-  },
-  json: true
-};
-
-request.post(authOptions, function(error, response, body) {
-  if (!error && response.statusCode === 200) {
-
-    // use the access token to access the Spotify Web API
-    var token = body.access_token;
-    var options = {
-      url: 'https://api.spotify.com/v1/users/jmperezperez',
-      headers: {
-        'Authorization': 'Bearer ' + token
-      },
-      json: true
-    };
-    request.get(options, function(error, response, body) {
-      console.log(body);
-    });
-  }
-});
 
 function randomNum() {
-  return Math.floor(Math.random() * 10)
+  return Math.floor(Math.random() * 3)
 }
 
 // Generate random song from classification:
@@ -114,9 +80,11 @@ function getSong(response) {
 }
 
 function spotify(genre){
-  fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
-    .then(console.log(GET_URL + "%22" + genre + "%22&type=track&limit=10"))
-    // .then(getSong)
-    .catch(function(errorMessage) { alert("error: " + errorMessage); });
-    console.log("Country");
+  if(genre == "country") {
+    return songs[randomNum()]
+    console.log(songs[randomNum()])
+  } else {
+    return songs[randomNum() + 3]
+    console.log(songs[randomNum() + 3])
+  }
 }
