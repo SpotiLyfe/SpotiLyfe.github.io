@@ -68,14 +68,11 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
 var songs = [link1, link2, link3, link4, link5, link6]
 
-
-var oauthToken = ""
-fetch("https://accounts.spotify.com/authorize?client_id=" + SPOTIFY_CLIENT_ID +
-      "&redirect_uri=http:%2F%2Fspotilyfe.github.io%2Fcallback&response_type=token&state=123")
-      .then(function(response) {
-        responseData = JSON.parse(response)
-        oauthToken = responseData["access_token"]
-      })
+var express = require('express'); // Express web server framework
+var app = express();
+app.use(express.static(__dirname + '/public'));
+console.log('Listening on 8888');
+app.listen(8888);
 
 var SpotifyWebApi = require('spotify-web-api-node');
 
