@@ -68,24 +68,25 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
 var songs = [link1, link2, link3, link4, link5, link6]
 
-// Spotify song + play song
-// let header = new Headers({
-//     'Access-Control-Allow-Origin':'*',
-//     "Authorization": "Basic " + SPOTIFY_CLIENT_ID,
-// });
-//
-// var myInit = {
-//   method: "POST",
-//   mode: 'cors',
-//   headers: header,
-//   body: {"grant-type": "client-credentials"}
-// };
-//
-// var CORS_URL = "https://cors.io/?"
-// var GET_URL = "https://api.spotify.com/v1/"
-// fetch("https://accounts.spotify.com/api/token", myInit)
-//   .then(function(response) {console.log(response);} )
-//   .catch(function(errorMessage) { alert("error: " + errorMessage); });
+
+var oauthToken = "BQDD_ASLMgiZuCrA8b9dOJX_SqUvKkXO_1_63vDt2CMM0m3kaaTgL80n7TBMhKMthvkilsIIPhQurlh2SggmFhqmEWufhFjcPoincOxKAyAkx8QaR7ZmK-kvAkttSwycEYD__CTk83D0PQ"
+
+var SpotifyWebApi = require('spotify-web-api-node');
+
+var spotifyApi = new SpotifyWebApi({
+  clientId : SPOTIFY_CLIENT_ID,
+  clientSecret : SPOTIFY_CLIENT_SECRET,
+  redirectUri : 'http://spotilyfe.github.io'
+});
+
+spotifyApi.setAccessToken(oauthToken)
+
+spotifyApi.searchTracks('Country')
+  .then(function(data) {
+    console.log('Search by "Country"', data.body);
+  }, function(err) {
+    console.error(err);
+  });
 
 // random num used for random song from json returned from get
 function randomNum() {
