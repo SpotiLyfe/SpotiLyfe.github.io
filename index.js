@@ -1,3 +1,6 @@
+/* global AjaxGetPromise, AjaxPostPromise */
+
+
 $(document).ready(() => {
     $('.button-collapse').sideNav({
         menuWidth: 300, // Default is 300
@@ -51,11 +54,11 @@ function getLightness(imageSrc, callback) {
 
 // Genre classification
 
-var threshold = 128; 
+var threshold = 128;
 var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
-    
+
     if(g > threshold){
         spotifyA();
     } else {
@@ -81,8 +84,24 @@ var country_songs = [link1, link2, link3]
 var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
+
+// Generate random song from classification:
+var GET_URL = "https://api.spotify.com/v1/"
+
+function randomNum() {
+  return Math.floor(Math.random() * 10)
+}
+
+function analyzeSong(response) {
+  var responseData = JSON.parse(response)
+  return responseData["tracks"]["items"]["external_urls"]
+}
+
 function spotifyA(){
-    // Play country
+  var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
+      ajaxPromise
+          .then(analyzeSong)
+          .catch(function(errorMessage) { alert("error: " + errorMessage); });
     alert("Country");
 }
 
