@@ -51,6 +51,7 @@ function getLightness(imageSrc, callback) {
 
 // Genre classification
 
+var threshold = 128; 
 var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
