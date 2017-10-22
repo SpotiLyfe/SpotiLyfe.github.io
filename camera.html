@@ -11,21 +11,20 @@
 </head>
 <body>
     <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Test 1</a></li>
-            <li><a href="#">Test 2</a></li>
-            <li><a href="#">Test 3</a></li>
-            </ul>
-        </div>
         
+        <device type="media" onchange="update(this.data)"></device>
+        <video autoplay></video>
+        <script>
+          function update(stream) {
+            document.querySelector('video').src = stream.url;
+          }
+        </script>
         
     </nav>
 
     
     <script src="auth.js"> </script>
-    <script src="index.js"> </script>
+    <script src="camera.js"> </script>
     <!-- JQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
