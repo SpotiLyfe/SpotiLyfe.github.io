@@ -147,16 +147,15 @@ function randomNum() {
 // Generate random song from classification:
 function getSong(response) {
   var responseData = JSON.parse(response)
-  return responseData["tracks"]["items"]["external_urls"][randomNum()]
+  console.log(responseData["tracks"]["items"]["external_urls"][randomNum()]) 
 }
 
 getid("test").onclick(spotifyA())
 
 function spotifyA(){
-  var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
-      ajaxPromise
-          .then(getSong)
-          .catch(function(errorMessage) { alert("error: " + errorMessage); });
+  fetch(GET_URL + "%22country%22&type=track&limit=10");
+    .then(getSong)
+    .catch(function(errorMessage) { alert("error: " + errorMessage); });
     console.log("Country");
 }
 
