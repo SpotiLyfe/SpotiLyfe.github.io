@@ -73,7 +73,7 @@ var urban_songs = [link4, link5, link6]
 var myHeaders = new Headers();
 var myInit = {
   method: "POST",
-  headers: {"Authorization": "Basic " + SPOTIFY_CLIEND_ID},
+  headers: {"Authorization": "Basic " + SPOTIFY_CLIENT_ID},
   body: {"grant-type": "client-credentials"}
 };
 
