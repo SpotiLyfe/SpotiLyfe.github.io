@@ -1,6 +1,6 @@
 // Get image + create tags
 
-// Sentient analysis
+// Sentiment analysis
 
 // Genre classification
 
