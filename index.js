@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-
-
 /* global AjaxGetPromise, AjaxPostPromise */
-=======
+
+
 $(document).ready(() => {
     $('.button-collapse').sideNav({
         menuWidth: 300, // Default is 300
@@ -11,7 +9,6 @@ $(document).ready(() => {
       }
     );
 });
->>>>>>> 555726d22f66baa1a2c6ca8821e63f133ddf1e35
 
 // Get image
 
@@ -57,7 +54,7 @@ function getLightness(imageSrc, callback) {
 
 // Genre classification
 
-var threshold = 128; 
+var threshold = 128;
 var url = "./test.jpg";
 getLightness(url, function(b, g) {
     console.log(b + "-" + g);
