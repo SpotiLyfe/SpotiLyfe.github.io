@@ -28,4 +28,9 @@ function error(err) {
     alertify.error(`ERROR(${err.code}): ${err.message}`);
 };
 
-navigator.geolocation.getCurrentPosition(success, error, options);
+
+function updateLocation() {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+}
+
+updateLocation();
