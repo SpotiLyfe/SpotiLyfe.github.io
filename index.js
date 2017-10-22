@@ -94,8 +94,10 @@ function randomNum() {
 
 function analyzeSong(response) {
   var responseData = JSON.parse(response)
-  return responseData["tracks"]["items"]["external_urls"]
+  return responseData["tracks"]["items"]["external_urls"][randomNum()]
 }
+
+$("test").onclick(spotifyA())
 
 function spotifyA(){
   var ajaxPromise = new AjaxGetPromise(GET_URL + "%22country%22&type=track&limit=10");
