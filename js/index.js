@@ -68,13 +68,34 @@ var link6 = "https://open.spotify.com/track/5uImkHXfTLkNYwemtGH7kB"
 
 var songs = [link1, link2, link3, link4, link5, link6]
 
-var express = require('express'); // Express web server framework
-var app = express();
-app.use(express.static(__dirname + '/public'));
-console.log('Listening on 8888');
-app.listen(8888);
+var authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
+};
 
-var SpotifyWebApi = require('spotify-web-api-node');
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+
+    // use the access token to access the Spotify Web API
+    var token = body.access_token;
+    var options = {
+      url: 'https://api.spotify.com/v1/users/nsundaresan',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      json: true
+    };
+    request.get(options, function(error, response, body) {
+      console.log(body);
+    });
+  }
+});
 
 var spotifyApi = new SpotifyWebApi({
   clientId : SPOTIFY_CLIENT_ID,
