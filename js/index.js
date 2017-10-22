@@ -73,7 +73,7 @@ var urban_songs = [link4, link5, link6]
 
 var CORS_URL = "https://cors.io/?"
 var GET_URL = "https://api.spotify.com/v1/"
-fetch(CORS_URL + "https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&response_type=code")
+fetch(CORS_URL + "https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&redirect_uri=http:%2F%2Fspotilyfe.github.io%2F&response_type=token")
   .then(function(response) {console.log(response);} )
   .catch(function(errorMessage) { alert("error: " + errorMessage); });
 
