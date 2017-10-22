@@ -71,9 +71,12 @@ var urban_songs = [link4, link5, link6]
 
 // Spotify song + play song
 
-
+var CORS_URL = "https://cors.io/?"
 var GET_URL = "https://api.spotify.com/v1/"
-var TOKEN = "abc"
+fetch(CORS_URL + "https://accounts.spotify.com/authorize/?client_id=" + "964b4736722e41de899fb3faac5c904c" + "&response_type=code")
+  .then(function(response) {console.log(response);} )
+  .catch(function(errorMessage) { alert("error: " + errorMessage); });
+
 // random num used for random song from json returned from get
 function randomNum() {
   return Math.floor(Math.random() * 10)
@@ -86,7 +89,7 @@ function getSong(response) {
 }
 
 function spotify(genre){
-  fetch(GET_URL + "%22" + genre + "%22&type=track&limit=10")
+  fetch(CORS_URL + GET_URL + "%22" + genre + "%22&type=track&limit=10")
     .then(console.log(GET_URL + "%22" + genre + "%22&type=track&limit=10"))
     // .then(getSong)
     .catch(function(errorMessage) { alert("error: " + errorMessage); });
